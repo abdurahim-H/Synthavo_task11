@@ -21,7 +21,13 @@ def parse_d(data):
 
 		if pd.notnull(replaced_by):
 			part_name = replaced_by
-		
+		if pd.notnull(start_date) and pd.notnull(end_date):
+			current_date = pd.Timestamp.now()
+			start_date = pd.to_datetime(start_date)
+			end_date = pd.to_datetime(end_date)
+			if not (start_date <= current_date <= end_date):
+				continue
+
 		if part_name in assemblies:
 			part_assemblies[part_name].append(assembly_name)
 		else:
