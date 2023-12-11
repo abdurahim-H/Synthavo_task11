@@ -9,3 +9,14 @@ def read_d(file_path):
 		print('File format not supported, you need to enter either CSV or Excl fle')
 		return None
 	return data
+
+def parse_d(data):
+	assemblies = {}
+	for index, ron in data.iterrows():
+		part_name = row ['Part-name']
+		assembly_name = row['Assembly-name']
+		if part_name in assemblies:
+			part_assemblies[part_name].append(assembly_name)
+		else:
+			assemblies[part_name] = [assembly_name]
+	return assemblies
