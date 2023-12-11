@@ -15,6 +15,13 @@ def parse_d(data):
 	for index, ron in data.iterrows():
 		part_name = row ['Part-name']
 		assembly_name = row['Assembly-name']
+		replaced_by = row['Replaced-By']
+		start_date = row['Start-Date']
+		end_date = row['End-Date']
+
+		if pd.notnull(replaced_by):
+			part_name = replaced_by
+		
 		if part_name in assemblies:
 			part_assemblies[part_name].append(assembly_name)
 		else:
