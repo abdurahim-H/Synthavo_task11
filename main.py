@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import requests
 
 def read_d(file_path):
 	if file_path.endswith('.csv'):
@@ -38,3 +39,10 @@ def parse_d(data):
 def prepare_data_for_api(assemblies):
 	json_object = json.dumps(assemblies)
 	return json_object
+
+def send_data_to_api(json_object, api_endpoint):
+	response = requests.post(api_endpoint, data = json_object)
+	if response.status_code != 200:
+		print(f"Failed to send data to API. Status code: {response.status_code}")
+		return None
+	return response
