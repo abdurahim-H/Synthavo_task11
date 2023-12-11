@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 
 def read_d(file_path):
 	if file_path.endswith('.csv'):
@@ -33,3 +34,7 @@ def parse_d(data):
 		else:
 			assemblies[part_name] = [assembly_name]
 	return assemblies
+
+def prepare_data_for_api(assemblies):
+	json_object = json.dumps(assemblies)
+	return json_object
